@@ -1,0 +1,132 @@
+﻿@model List<AIProject.Models.ChatMessage>
+
+@{
+    ViewData["Title"] = "Arrow AI";
+}
+
+<link rel="stylesheet"
+      href="~/css/chat.css"
+      asp-append-version="true" />
+
+<div class="chat-container" id="arrowChat">
+
+    <div class="chat-header">
+
+        <div class="logo">
+            <span aria-hidden="true">➜</span>
+
+            <div>
+                <h2>Arrow AI</h2>
+                <p>Your AI Assistant</p>
+            </div>
+        </div>
+
+        <form asp-controller="Chat"
+              asp-action="NewChat"
+              method="post"
+              id="newChatForm">
+
+            <button type="submit"
+                    class="new-chat-button"
+                    id="newChatButton">
+                New Chat
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <div class="chat-box"
+         id="chatBox"
+         role="log"
+         aria-live="polite">
+
+        @if (Model.Count == 0)
+        {
+            <div class="message ai-message" id="welcomeMessage">
+
+                <div class="message-name">
+                    Arrow AI
+                </div>
+
+                <div class="message-text" dir="auto">
+                    Hello! I'm Arrow AI. How can I help you?
+                </div>
+
+            </div>
+        }
+        else
+        {
+            @foreach (var message in Model)
+            {
+                var isUser = message.Role == "user";
+
+                <div class="message @(isUser ? "user-message" : "ai-message")">
+
+                    <div class="message-name">
+                        @(isUser ? "You" : "Arrow AI")
+                    </div>
+
+                    <div class="message-text" dir="auto">
+                        @message.Content
+                    </div>
+
+                </div>
+            }
+        }
+
+    </div>
+
+
+    <div class="chat-status"
+         id="loadingIndicator"
+         role="status"
+         hidden>
+
+        Arrow AI is thinking...
+
+    </div>
+
+
+    <div class="chat-error"
+         id="errorMessage"
+         role="alert"
+         hidden>
+    </div>
+
+
+    <form class="input-area"
+          id="messageForm">
+
+        <input type="text"
+               id="messageInput"
+               name="userMessage"
+               aria-label="Message Arrow AI"
+               placeholder="Message Arrow AI..."
+               autocomplete="off"
+               maxlength="4000"
+               dir="auto"
+               required />
+
+        <button type="submit">
+            Send
+        </button>
+
+    </form>
+
+
+    <noscript>
+        <p class="chat-error">
+            Enable JavaScript to send messages.
+        </p>
+    </noscript>
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/js/chat.js" asp-append-version="true"></script>
+
+}

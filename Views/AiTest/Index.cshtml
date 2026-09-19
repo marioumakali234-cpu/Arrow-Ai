@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "ArrowAI Connection Test";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+            <h2>ArrowAI Connection Test</h2>
+
+            <p class="text-muted">
+                Send a message to test the OpenAI connection.
+            </p>
+
+            <form asp-controller="AiTest"
+                  asp-action="Index"
+                  method="post">
+
+                <div class="mb-3">
+                    <label for="message" class="form-label">
+                        Your message
+                    </label>
+
+                    <textarea id="message"
+                              name="message"
+                              class="form-control"
+                              rows="5"
+                              maxlength="4000"
+                              placeholder="Type your question here..."
+                              required>@ViewBag.Message</textarea>
+                </div>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Send Message
+                </button>
+            </form>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-danger mt-4"
+                     role="alert">
+                    @ViewBag.Error
+                </div>
+            }
+
+            @if (ViewBag.Reply != null)
+            {
+                <div class="card mt-4">
+                    <div class="card-header">
+                        ArrowAI Response
+                    </div>
+
+                    <div class="card-body">
+                        <div style="white-space: pre-wrap;">@ViewBag.Reply</div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

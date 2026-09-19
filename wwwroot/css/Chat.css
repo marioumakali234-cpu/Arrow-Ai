@@ -1,0 +1,250 @@
+﻿.chat-container,
+.chat-container * {
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f7fb;
+}
+
+.chat-container {
+    width: 700px;
+    max-width: 100%;
+    height: 700px;
+    margin: 30px auto;
+    background: white;
+    color: #222;
+    font-family: Arial, sans-serif;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+    .chat-container [hidden] {
+        display: none !important;
+    }
+
+/* Header */
+
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: #202123;
+    color: white;
+    padding: 18px 25px;
+}
+
+    .chat-header form {
+        margin: 0;
+    }
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+    .logo span {
+        font-size: 32px;
+    }
+
+    .logo h2 {
+        margin: 0;
+        color: white;
+        font-size: 22px;
+    }
+
+    .logo p {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: #ccc;
+    }
+
+.new-chat-button {
+    padding: 9px 13px;
+    border: 1px solid #777;
+    border-radius: 9px;
+    background: transparent;
+    color: white;
+    font-size: 13px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+    .new-chat-button:hover:not(:disabled) {
+        background: #38393c;
+    }
+
+/* Messages */
+
+.chat-box {
+    flex: 1;
+    min-height: 0;
+    padding: 25px;
+    overflow-y: auto;
+}
+
+.message {
+    max-width: 75%;
+    margin-bottom: 20px;
+}
+
+.message-name {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.message-text {
+    padding: 12px 16px;
+    border-radius: 12px;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    text-align: start;
+}
+
+/* Assistant messages */
+
+.ai-message {
+    margin-right: auto;
+}
+
+    .ai-message .message-text {
+        background: #f0f0f0;
+        color: #222;
+    }
+
+/* User messages */
+
+.user-message {
+    margin-left: auto;
+}
+
+    .user-message .message-text {
+        background: #202123;
+        color: white;
+    }
+
+/* Input */
+
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin: 0;
+    padding: 15px 20px;
+    border-top: 1px solid #ddd;
+}
+
+    .input-area input {
+        flex: 1;
+        min-width: 0;
+        padding: 14px;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: white;
+        color: #222;
+        font-size: 15px;
+    }
+
+        .input-area input:focus {
+            outline: 2px solid #747b86;
+            outline-offset: 2px;
+        }
+
+    .input-area button {
+        padding: 0 22px;
+        border: none;
+        border-radius: 10px;
+        background: #202123;
+        color: white;
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+        .input-area button:hover:not(:disabled) {
+            background: #333;
+        }
+
+.chat-container button:focus-visible {
+    outline: 3px solid #859ac2;
+    outline-offset: 3px;
+}
+
+.chat-container button:disabled,
+.chat-container input:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* Loading and errors */
+
+.chat-status {
+    padding: 0 25px 12px;
+    color: #555;
+    font-size: 14px;
+}
+
+.chat-error {
+    margin: 0 20px 12px;
+    padding: 12px 14px;
+    border: 1px solid #f0c8c8;
+    border-radius: 10px;
+    background: #fff0f0;
+    color: #922020;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .chat-container {
+        height: 80vh;
+        height: 80dvh;
+        min-height: 400px;
+        margin: 20px auto;
+    }
+
+    .chat-header {
+        gap: 8px;
+        padding: 15px;
+    }
+
+    .logo {
+        gap: 8px;
+    }
+
+        .logo h2 {
+            font-size: 20px;
+        }
+
+        .logo p {
+            font-size: 12px;
+        }
+
+    .message {
+        max-width: 90%;
+    }
+
+    .chat-box {
+        padding: 18px;
+    }
+
+    .input-area {
+        gap: 8px;
+        padding: 12px;
+    }
+
+        .input-area input {
+            padding: 12px;
+            font-size: 16px;
+        }
+
+        .input-area button {
+            padding: 0 14px;
+        }
+}
